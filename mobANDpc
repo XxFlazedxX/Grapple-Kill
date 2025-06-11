@@ -433,13 +433,6 @@ UserInputService.InputEnded:Connect(function(input, processed)
 	end
 end)
 
--- Reset toggles to OFF on respawn
-local function resetAllToggles()
-    for _, updateFunc in pairs(toggleButtons) do
-        updateFunc(false)
-    end
-end
-
 player.CharacterAdded:Connect(function()
     -- Wait for character to load fully
     repeat wait() until player.Character and player.Character:FindFirstChild("HumanoidRootPart")
