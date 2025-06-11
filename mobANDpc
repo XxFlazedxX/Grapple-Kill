@@ -414,6 +414,25 @@ _, updateAimAssistToggle = createToggleButton("Aim Assist", function(isOn)
     end
 end)
 
+-- F/V key hold toggle for Kill Touch
+UserInputService.InputBegan:Connect(function(input, processed)
+	if processed then return end
+	if input.KeyCode == Enum.KeyCode.F or input.KeyCode == Enum.KeyCode.V then
+		if not damageEnabled then
+			updateDamageToggle(true)
+		end
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input, processed)
+	if processed then return end
+	if input.KeyCode == Enum.KeyCode.F or input.KeyCode == Enum.KeyCode.V then
+		if damageEnabled then
+			updateDamageToggle(false)
+		end
+	end
+end)
+
 -- Reset toggles to OFF on respawn
 local function resetAllToggles()
     for _, updateFunc in pairs(toggleButtons) do
